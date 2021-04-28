@@ -25,8 +25,8 @@ spec:
             memory: "64Mi"
             cpu: "100m"
           limits:
-            memory: "$MEM$mi"
-            cpu: "$CPU$m"
+            memory: "${MEM}Gi"
+            cpu: "${CPU}m"
         env:
         - name: RDP_SERVER
           value: "yes"
