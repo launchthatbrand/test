@@ -48,6 +48,7 @@ metadata:
   name: "$Username-docker-wine"
   labels:
     app: "$Username-docker-wine"
+    client: $Username
 spec:
   ports:
   - port: 3389
