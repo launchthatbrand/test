@@ -1,23 +1,23 @@
 apiVersion: apps/v1 
 kind: Deployment
 metadata:
-  name: "$Username-$random-docker-wine"
+  name: "$Username-$random-docker-wine-$i"
   labels:
-    app: "$Username-$random-docker-wine"
-    client: "$Username-$random"
+    app: "$Username-$random-docker-wine-$i"
+    client: "$Username-$random-$i"
 spec:
   replicas: 1
   selector:
     matchLabels:
-        app: "$Username-$random-docker-wine"
-        client: "$Username-$random"
+        app: "$Username-$random-docker-wine-$i"
+        client: "$Username-$random-$i"
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: "$Username-$random-docker-wine"
-        client: "$Username-$random"
+        app: "$Username-$random-docker-wine-$i"
+        client: "$Username-$random-$i"
     spec:
       securityContext:
         fsGroup: 1010
@@ -68,7 +68,7 @@ spec:
         - name: PRODUCT
           value: $product
         volumeMounts:
-        - name: $Username-docker-wine
+        - name: $Username-docker-wine-$i
           mountPath: /home/winer/.wine/
       #- name: "$Username-gitsync"
       #  image: k8s.gcr.io/git-sync:v3.0.1
@@ -110,16 +110,16 @@ spec:
         command: ['sh', '-c', 'mkdir -p /home/winer/.wine/drive_c; chown -R 1000:1010 /home/winer/; echo The app is running!']
         # command: ['sh', '-c', 'while true; do sleep 30; done;']
         volumeMounts:
-        - name: $Username-docker-wine
+        - name: $Username-docker-wine-$i
           mountPath: /home/winer/.wine/
       nodeSelector:
         node.kubernetes.io/instance-type: $instancetype
       imagePullSecrets:
       - name: regcred
       volumes:
-      - name: $Username-docker-wine
+      - name: $Username-docker-wine-$i
         persistentVolumeClaim:
-          claimName: $Username-docker-wine
+          claimName: $Username-docker-wine-$i
       tolerations:
       - key: "client"
         operator: "Equal"
