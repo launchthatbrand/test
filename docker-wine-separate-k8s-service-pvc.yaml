@@ -10,10 +10,10 @@ spec:
   ports:
   - port: 8080
     protocol: TCP
-    name: "$Username-$brand-$product-$random-$i"
+    name: "$Username-$random-novnc"
   - port: 5900
     protocol: TCP
-    name: "$Username-$brand-$product-$random-$i"
+    name: "$Username-$random-vnc"
     # nodePort : 30380
   selector:
     app: "$Username-$brand-$product-$random-$i"
