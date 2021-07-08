@@ -10,10 +10,10 @@ spec:
   ports:
   - port: 8080
     protocol: TCP
-    name: "$Username-$random-novnc"
+    name: "$Username-$random-novnc-$product-$i"
   - port: 5900
     protocol: TCP
-    name: "$Username-$random-vnc"
+    name: "$Username-$random-vnc-$product-$i"
     # nodePort : 30380
   selector:
     app: "$Username-$random-docker-wine-$product-$i"
