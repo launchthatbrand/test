@@ -1,10 +1,11 @@
 apiVersion: v1 
 kind: Service
 metadata:
-  name: "$Username-$random-docker-wine-$i"
+  name: "$Username-$random-docker-wine-$product-$i"
   labels:
-    app: "$Username-$random-docker-wine-$i"
+    app: "$Username-$random-docker-wine-$product-$i"
     client: "$Username-$random-$i"
+    user: "$Username"
 spec:
   ports:
   - port: 8080
@@ -15,17 +16,19 @@ spec:
     name: "$Username-$random-vnc"
     # nodePort : 30380
   selector:
-    app: "$Username-$random-docker-wine-$i"
+    app: "$Username-$random-docker-wine-$product-$i"
     client: "$Username-$random-$i"
+    user: "$Username"
   type: NodePort
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: "$Username-docker-wine-$i"
+  name: "$Username-docker-wine-$product-$i"
   labels:
-    app: "$Username-$random-docker-wine-$i"
+    app: "$Username-$random-docker-wine-$product-$i"
     client: "$Username-$random-$i"
+    user: "$Username"
 spec:
   accessModes:
     - ReadWriteOnce
